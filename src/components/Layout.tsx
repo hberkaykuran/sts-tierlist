@@ -2,16 +2,16 @@ import Head from "next/head";
 import NavBar from "./NavBar";
 
 type LayoutProps = {
-  children: React.ReactNode,
+  children: React.ReactNode;
 };
 
-export default function Layout( {children} : LayoutProps) {
- return (
+export default function Layout({ children }: LayoutProps) {
+  return (
     <>
       <div>
-        <NavBar/>
+        <NavBar />
         <main>{children}</main>
       </div>
     </>
- )
+  );
 }

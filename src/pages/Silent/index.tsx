@@ -8,9 +8,7 @@ const Silent: NextPage = () => {
         <title>StS Silent</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        Silent
-      </div>
+      <div>Silent</div>
     </>
   );
 };

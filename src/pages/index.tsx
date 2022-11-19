@@ -8,9 +8,7 @@ const Home: NextPage = () => {
         <title>StS Tierlist</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        TEST
-      </div>
+      <div>TEST</div>
     </>
   );
 };

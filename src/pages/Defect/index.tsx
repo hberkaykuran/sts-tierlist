@@ -8,9 +8,7 @@ const Defect: NextPage = () => {
         <title>StS Defect</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        Defect
-      </div>
+      <div>Defect</div>
     </>
   );
 };
