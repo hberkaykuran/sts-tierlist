@@ -25,9 +25,9 @@ export default function Silent() {
 
   function refreshCards() {
     if (comparedCards.length < 4) {
-      var arr: number[] = [];
+      let arr: number[] = [];
       while (arr.length < 4) {
-        var r = Math.floor(Math.random() * allCards.length);
+        let r = Math.floor(Math.random() * allCards.length);
         if (arr.indexOf(r) == -1) arr.push(r);
       }
       setComparedCards([
@@ -37,8 +37,8 @@ export default function Silent() {
         allCards[arr[3] as number] as StSCardVote,
       ]);
     } else {
-      var first = 0;
-      var second = 0;
+      let first = 0;
+      let second = 0;
       first = Math.floor(Math.random() * allCards.length);
       do {
         second = Math.floor(Math.random() * allCards.length);
