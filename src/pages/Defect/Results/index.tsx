@@ -44,15 +44,15 @@ export default function DefectResults() {
         <title>StS All Cards</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="invisible-scrollbar mt-10 flex h-[calc(100vh-5.5rem)] w-[100vw] flex-col items-center justify-between overflow-hidden">
-        <div className="absolute flex h-12 flex-row items-center divide-x-2 divide-gray-500 border-2 border-b-0 border-gray-500 bg-neutral-900">
+      <div className="resultPageWrapper">
+        <div className="resultHeader">
           <div className="resultRowItem w-24">Card Name</div>
           <div className="resultRowItem w-48">Card</div>
           <div className="resultRowItem w-64">Details</div>
           <div className="resultRowItem w-24">Class</div>
           <div className="resultRowItem w-[7.5rem]">Pick %</div>
         </div>
-        <div className="invisible-scrollbar my-12 flex flex-col divide-y-2 divide-gray-500 overflow-y-scroll border-2 border-gray-500">
+        <div className="invisible-scrollbar resultTable">
           {!loading &&
             allCards
               .sort((a, b) => {
@@ -64,10 +64,7 @@ export default function DefectResults() {
                       calcPercentage(a.upvotes, a.timesListed);
               })
               .map((value, index) => (
-                <div
-                  className="flex flex-row items-center divide-x-2 divide-gray-500"
-                  key={`card-${index}`}
-                >
+                <div className="resultTableRow" key={`card-${index}`}>
                   <div className="resultRowItem w-24">
                     <p className="mx-4">{value.card.name}</p>
                   </div>
@@ -95,7 +92,7 @@ export default function DefectResults() {
               ))}
         </div>
         <Link href="/Defect">
-          <div className="hoverAnimation absolute bottom-2 flex h-8 w-36 items-center justify-center rounded-full bg-neutral-900 text-sm">
+          <div className="hoverAnimation resultGoBackButton">
             Go back to voting
           </div>
         </Link>

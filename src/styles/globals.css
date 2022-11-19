@@ -8,15 +8,30 @@
     }
     .hoverAnimation{
         @apply hover:bg-gray-300 hover:bg-opacity-10 transition ease-in-out duration-200
-    }
-    .resultRowItem{
-        @apply flex h-full items-center justify-center
-    }
+    }    
     .invisible-scrollbar::-webkit-scrollbar {
         @apply w-2 bg-neutral-700
     }
     .invisible-scrollbar::-webkit-scrollbar-thumb {
         @apply bg-neutral-900 rounded-full
+    }
+    .resultPageWrapper {
+        @apply invisible-scrollbar mt-10 flex h-[calc(100vh-5.5rem)] w-[100vw] flex-col items-center justify-between overflow-hidden
+    }
+    .resultHeader {
+        @apply absolute flex h-12 flex-row items-center divide-x-2 divide-gray-500 border-2 border-b-0 border-gray-500 bg-neutral-900
+    }
+    .resultTable{
+        @apply mt-12 mb-4 flex flex-col divide-y-2 divide-gray-500 overflow-y-scroll border-2 border-gray-500
+    }
+    .resultTableRow{
+        @apply flex flex-row items-center divide-x-2 divide-gray-500
+    }
+    .resultRowItem {
+        @apply flex h-full items-center justify-center
+    }
+    .resultGoBackButton{
+        @apply mb-2 flex h-8 w-36 items-center justify-center rounded-full bg-neutral-900 text-sm
     }
 }
 
