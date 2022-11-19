@@ -20,7 +20,7 @@ interface StSCardVote {
   card: StSCard;
 }
 
-export default function AllResults() {
+export default function DefectResults() {
   const [allCards, setAllCards] = useState<StSCardVote[]>([]);
   const [loading, setLoading] = useState(false);
   const classes: string[] = ["Ironclad", "Silent", "Defect", "Watcher"];
@@ -31,7 +31,7 @@ export default function AllResults() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get<StSCardVote[]>("https://sts-api.vercel.app/api/vote?class=All")
+      .get<StSCardVote[]>("https://sts-api.vercel.app/api/vote?class=Defect")
       .then((response: AxiosResponse) => {
         setAllCards(response.data);
         setLoading(false);
@@ -94,7 +94,7 @@ export default function AllResults() {
                 </div>
               ))}
         </div>
-        <Link href="/All">
+        <Link href="/Defect">
           <div className="hoverAnimation absolute bottom-2 flex h-8 w-36 items-center justify-center rounded-full bg-neutral-900 text-sm">
             Go back to voting
           </div>

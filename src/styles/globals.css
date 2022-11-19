@@ -9,6 +9,15 @@
     .hoverAnimation{
         @apply hover:bg-gray-300 hover:bg-opacity-10 transition ease-in-out duration-200
     }
+    .resultRowItem{
+        @apply flex h-full items-center justify-center
+    }
+    .invisible-scrollbar::-webkit-scrollbar {
+        @apply w-2 bg-neutral-700
+    }
+    .invisible-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-neutral-900 rounded-full
+    }
 }
 
 body {

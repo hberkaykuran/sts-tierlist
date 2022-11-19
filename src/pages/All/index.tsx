@@ -2,27 +2,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import Link from "next/link";
-
-interface StSCard {
-  id: number;
-  name: string;
-  details: string;
-  image: string;
-  stSClassId: number;
-}
-
-interface StSCardVote {
-  id: number;
-  class: string;
-  upvotes: number;
-  timesListed: number;
-  cardId: number;
-  card: StSCard;
-}
-
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import { StSCardVote } from "../../utils/stsUtils";
 
 export default function All() {
   const [comparedCards, setComparedCards] = useState<StSCardVote[]>([]);
@@ -30,17 +10,17 @@ export default function All() {
   const [loading, setLoading] = useState(false);
   const [firstSet, setFirstSet] = useState(true);
   useEffect(() => {
+    setLoading(true);
     axios
       .get<StSCardVote[]>("https://sts-api.vercel.app/api/vote?class=All")
       .then((response: AxiosResponse) => {
         setAllCards(response.data);
+        setLoading(false);
       });
   }, []);
 
   useEffect(() => {
-    if (allCards.length > 0) {
-      refreshCards();
-    }
+    if (allCards.length > 0) refreshCards();
   }, [allCards]);
 
   function refreshCards() {
@@ -83,14 +63,10 @@ export default function All() {
   }
 
   async function submitVote(upvote: number, downvote: number) {
-    setLoading(true);
-    console.log(upvote + " " + downvote);
-    // axios.post(
-    //   `https://sts-api.vercel.app/api/vote?class=All&upvoteId=${upvote}&downvoteId=${downvote}`
-    // );
+    axios.post(
+      `https://sts-api.vercel.app/api/vote?class=All&upvoteId=${upvote}&downvoteId=${downvote}`
+    );
     refreshCards();
-    //await sleep(1250);
-    setLoading(false);
   }
 
   return (
@@ -138,14 +114,7 @@ export default function All() {
             </div>
           </div>
         )}
-        <div
-          className={`mt-32 flex flex-row justify-center space-x-10 ${
-            !loading && "hidden"
-          }`}
-        >
-          <p className=" text-2xl font-bold text-green-500"> Vote Submitted!</p>
-        </div>
-        <div className="hoverAnimation mb-24 flex h-10 w-32 items-center justify-center rounded-full bg-neutral-900 text-lg">
+        <div className="hoverAnimation absolute bottom-24 flex h-10 w-32 items-center justify-center rounded-full bg-neutral-900 text-lg">
           <Link href="/All/Results">See results</Link>{" "}
         </div>
       </div>
