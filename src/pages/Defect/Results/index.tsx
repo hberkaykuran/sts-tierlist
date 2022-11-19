@@ -41,7 +41,7 @@ export default function DefectResults() {
   return (
     <>
       <Head>
-        <title>StS All Cards</title>
+        <title>StS Defect Results</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="resultPageWrapper">

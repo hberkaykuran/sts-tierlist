@@ -41,7 +41,7 @@ export default function IroncladResults() {
   return (
     <>
       <Head>
-        <title>StS All Cards</title>
+        <title>StS Ironclad Results</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="resultPageWrapper">

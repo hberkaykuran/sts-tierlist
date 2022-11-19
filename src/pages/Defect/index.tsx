@@ -72,7 +72,7 @@ export default function Defect() {
   return (
     <>
       <Head>
-        <title>StS All Cards</title>
+        <title>StS Defect</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex h-[calc(100vh-3rem)] w-[100vw] flex-col items-center justify-between">

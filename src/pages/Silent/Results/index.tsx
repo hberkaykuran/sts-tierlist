@@ -41,7 +41,7 @@ export default function SilentResults() {
   return (
     <>
       <Head>
-        <title>StS All Cards</title>
+        <title>StS Silent Results</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="resultPageWrapper">

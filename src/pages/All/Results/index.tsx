@@ -41,7 +41,7 @@ export default function AllResults() {
   return (
     <>
       <Head>
-        <title>StS All Cards</title>
+        <title>StS All Cards Results</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="resultPageWrapper">
