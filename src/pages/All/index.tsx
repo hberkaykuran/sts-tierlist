@@ -25,9 +25,9 @@ export default function All() {
 
   function refreshCards() {
     if (comparedCards.length < 4) {
-      let arr: number[] = [];
+      const arr: number[] = [];
       while (arr.length < 4) {
-        let r = Math.floor(Math.random() * allCards.length);
+        const r = Math.floor(Math.random() * allCards.length);
         if (arr.indexOf(r) == -1) arr.push(r);
       }
       setComparedCards([
