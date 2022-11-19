@@ -28,6 +28,7 @@ export default function All() {
   const [comparedCards, setComparedCards] = useState<StSCardVote[]>([]);
   const [allCards, setAllCards] = useState<StSCardVote[]>([]);
   const [loading, setLoading] = useState(false);
+  const [firstSet, setFirstSet] = useState(true);
   useEffect(() => {
     axios
       .get<StSCardVote[]>("https://sts-api.vercel.app/api/vote?class=All")
@@ -43,26 +44,52 @@ export default function All() {
   }, [allCards]);
 
   function refreshCards() {
-    var first = 0;
-    var second = 0;
-    first = Math.floor(Math.random() * allCards.length);
-    do {
-      second = Math.floor(Math.random() * allCards.length);
-    } while (first == second);
-    setComparedCards([
-      allCards[first] as StSCardVote,
-      allCards[second] as StSCardVote,
-    ]);
+    if (comparedCards.length < 4) {
+      var arr: number[] = [];
+      while (arr.length < 4) {
+        var r = Math.floor(Math.random() * allCards.length);
+        if (arr.indexOf(r) == -1) arr.push(r);
+      }
+      setComparedCards([
+        allCards[arr[0] as number] as StSCardVote,
+        allCards[arr[1] as number] as StSCardVote,
+        allCards[arr[2] as number] as StSCardVote,
+        allCards[arr[3] as number] as StSCardVote,
+      ]);
+    } else {
+      var first = 0;
+      var second = 0;
+      first = Math.floor(Math.random() * allCards.length);
+      do {
+        second = Math.floor(Math.random() * allCards.length);
+      } while (first == second);
+      if (firstSet) {
+        setComparedCards([
+          allCards[first] as StSCardVote,
+          allCards[second] as StSCardVote,
+          comparedCards[2] as StSCardVote,
+          comparedCards[3] as StSCardVote,
+        ]);
+      } else {
+        setComparedCards([
+          comparedCards[0] as StSCardVote,
+          comparedCards[1] as StSCardVote,
+          allCards[first] as StSCardVote,
+          allCards[second] as StSCardVote,
+        ]);
+      }
+      setFirstSet(!firstSet);
+    }
   }
 
   async function submitVote(upvote: number, downvote: number) {
     setLoading(true);
     console.log(upvote + " " + downvote);
-    axios.post(
-      `https://sts-api.vercel.app/api/vote?class=All&upvoteId=${upvote}&downvoteId=${downvote}`
-    );
+    // axios.post(
+    //   `https://sts-api.vercel.app/api/vote?class=All&upvoteId=${upvote}&downvoteId=${downvote}`
+    // );
     refreshCards();
-    await sleep(1250);
+    //await sleep(1250);
     setLoading(false);
   }
 
@@ -80,13 +107,14 @@ export default function All() {
             }`}
           >
             <div className="flex flex-col items-center space-y-10">
-              <img src={comparedCards[0]?.card.image} />
+              <img src={comparedCards[0]?.card.image} hidden={!firstSet} />
+              <img src={comparedCards[2]?.card.image} hidden={firstSet} />
               <div
                 className="hoverAnimation flex h-12 w-24 items-center justify-center rounded-full bg-neutral-900"
                 onClick={() =>
                   submitVote(
-                    comparedCards[0]?.id as number,
-                    comparedCards[1]?.id as number
+                    comparedCards[0 + (firstSet ? 0 : 2)]?.id as number,
+                    comparedCards[1 + (firstSet ? 0 : 2)]?.id as number
                   )
                 }
               >
@@ -94,13 +122,14 @@ export default function All() {
               </div>
             </div>
             <div className="flex flex-col items-center space-y-10">
-              <img src={comparedCards[1]?.card.image} />
+              <img src={comparedCards[1]?.card.image} hidden={!firstSet} />
+              <img src={comparedCards[3]?.card.image} hidden={firstSet} />
               <div
                 className="hoverAnimation flex h-12 w-24 items-center justify-center rounded-full bg-neutral-900"
                 onClick={() =>
                   submitVote(
-                    comparedCards[1]?.id as number,
-                    comparedCards[0]?.id as number
+                    comparedCards[1 + (firstSet ? 0 : 2)]?.id as number,
+                    comparedCards[0 + (firstSet ? 0 : 2)]?.id as number
                   )
                 }
               >
